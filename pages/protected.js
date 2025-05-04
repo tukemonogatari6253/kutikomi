@@ -8,7 +8,7 @@ export default function Protected({ data }) {
       <h1>Protected Page</h1>
     　<p>こちらは会員しか閲覧することができません。</p>
       <pre>{JSON.stringify(data, null, 2)}</pre>
-  <Link href="/reviews">口コミを追加する</Link>
+  <Link href="/reviews">口コミページへ</Link>
       <a href="/api/auth/logout">ログアウト</a>
       <br />
       <Link href="/">会員ホームにいく</Link>
