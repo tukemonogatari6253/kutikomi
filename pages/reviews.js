@@ -1,6 +1,7 @@
 // pages/reviews.js
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function ReviewsPage() {
   const { user } = useUser();
