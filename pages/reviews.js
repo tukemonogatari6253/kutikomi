@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { useUser } from '@auth0/nextjs-auth0/client';
-
+import Link from 'next/link';
 export default function Reviews() {
   const { user } = useUser();
   const [reviews, setReviews] = useState([]);
