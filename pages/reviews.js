@@ -1,46 +1,40 @@
 // pages/reviews.js
-import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabaseClient';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import Link from 'next/link';
-export default function Reviews() {
+import { useState, useEffect } from 'react';
+
+export default function ReviewsPage() {
   const { user } = useUser();
-  const [reviews, setReviews] = useState([]);
   const [content, setContent] = useState('');
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetchReviews();
+    const loadReviews = async () => {
+      const res = await fetch('/api/get-reviews');
+      const data = await res.json();
+      setReviews(data);
+    };
+    loadReviews();
   }, []);
 
-  async function fetchReviews() {
-    const { data, error } = await supabase.from('reviews').select('*').order('created_at', { ascending: false });
-    if (!error) setReviews(data);
-  }
-
-  async function submitReview() {
-    if (!content) return;
-
-    const { error } = await supabase.from('reviews').insert([
-      {
-        user_id: user.sub,
-        user_name: user.name,
-        content,
-      },
-    ]);
-    if (!error) {
-      setContent('');
-      fetchReviews();
-    }
-  }
-
-  if (!user) return <p>ログインしてください</p>;
+  const handleSubmit = async () => {
+    await fetch('/api/reviews', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content }),
+    });
+    setContent('');
+    location.reload(); // シンプルな再読み込み
+  };
 
   return (
     <div>
-      <h1>口コミ一覧</h1>
-      <textarea value={content} onChange={(e) => setContent(e.target.value)} />
-      <button onClick={submitReview}>投稿</button>
-
+      <h1>口コミページ</h1>
+      {user && (
+        <>
+          <textarea value={content} onChange={(e) => setContent(e.target.value)} />
+          <button onClick={handleSubmit}>投稿</button>
+        </>
+      )}
       <ul>
         {reviews.map((r) => (
           <li key={r.id}>
