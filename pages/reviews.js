@@ -42,6 +42,10 @@ export default function ReviewsPage() {
           </li>
         ))}
       </ul>
+          <br />
+      <a href="/api/auth/logout">ログアウト</a>
+      <br />
+      <Link href="/">会員ホームにいく</Link>
     </div>
   );
 }
