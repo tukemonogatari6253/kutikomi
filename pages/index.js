@@ -23,7 +23,7 @@ export default function Home() {
           <a href="/api/auth/logout">ログアウト</a>
           <br />
           <Link href="/protected">会員ページにいく</Link>
-         <Link href="/reviews">口コミを追加する</Link>
+         <Link href="/reviews">口コミページへ</Link>
         </>
       )}
     </div>
