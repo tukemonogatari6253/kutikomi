@@ -11,15 +11,15 @@ export default function Home() {
   return (
     <div>
     <Head>
-<title>ホーム - こんにちは。まずはログインしよう</title>
+<title>ホーム - こんにちは。</title>
 <meta name="description" content="Auth0認証を使ったNext.jsアプリ" />
 </Head>
-      <h1>こんにちは。まずはログインしよう</h1>
       {!user ? (
+        <h1>こんにちは。まずはログインしよう</h1>
         <a href="/api/auth/login">ログイン</a>
       ) : (
         <>
-          <p>ログインできました。こんにちは, {user.name}</p>
+          <h1>ログインできました。こんにちは, {user.name}</h1>
           <a href="/api/auth/logout">ログアウト</a>
           <br />
           <Link href="/protected">会員ページにいく</Link>
