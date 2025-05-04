@@ -16,11 +16,11 @@ export default function Home() {
 </Head>
       {!user ? (
         <h1>こんにちは。まずはログインしよう</h1>
-        <a href="/api/auth/login">ログイン</a>
+        <Link href="/api/auth/login">ログイン</Link>
       ) : (
         <>
           <h1>ログインできました。こんにちは, {user.name}</h1>
-          <a href="/api/auth/logout">ログアウト</a>
+          <Link href="/api/auth/logout">ログアウト</Link>
           <br />
           <Link href="/protected">会員ページにいく</Link>
          <Link href="/reviews">口コミページへ</Link>
